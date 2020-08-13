@@ -52,13 +52,39 @@
             </field>
         </record>
 
-
+        <record id="daily_activity_sheet_view_gantt" model="ir.ui.view">
+            <field name="name">daily.activity.sheet.gantt</field>
+            <field name="model">daily.activity.sheet</field>
+            <field name="arch" type="xml">
+                <gantt
+                    color="medecin"
+                    date_start="in_date"
+                    date_stop="out_date"
+                    default_group_by='medecin'
+                    thumbnails="{'medecin': 'image_128'}">
+                    <field name="total_hours"/>
+                    <field name="activity_counts"/>
+                    <templates>
+                     <div t-name="gantt-popover" class="container-fluid">
+                         <div class="row no-gutters">
+                             <div class="col">
+                                 <ul class="pl-1 mb-0">
+                                     <li><strong>Nombre total d'heures : </strong> <t t-esc="total_hours"/></li>
+                                     <li><strong>Nombre total d'activités : </strong> <t t-esc="activity_counts"/></li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                    </templates>
+                </gantt>
+            </field>
+        </record>
 
         <record id="daily_activity_sheet_action" model="ir.actions.act_window">
             <field name="name">Activités journalières</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">daily.activity.sheet</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,gantt,form</field>
         </record>
 
         <record model="ir.ui.view" id="view_daily_activity_sheet_search">
