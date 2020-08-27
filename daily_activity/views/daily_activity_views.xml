@@ -1,107 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="daily_activity_form">
+        <record model="ir.ui.view" id="single_activity_form">
             <field name="name">daily.activity.form</field>
-            <field name="model">daily.activity.sheet</field>
+            <field name="model">daily.activity</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <group>
-                            <group>
-                                <field name="name"/>
-                                <field name="medecin"/>
-                            </group>
-                            <group>
-                                <field name="in_date"/>
-                                <button name="in_date_now" type="object" string="Maintenant" class="oe_highlight"/>
-                                <field name="out_date"/>
-                                <button name="out_date_now" type="object" string="Maintenant" class="oe_highlight"/>
-                            </group>
+                            <field name="name"/>
                         </group>
-                        <notebook>
-                            <page string="Activités">
-                                <field name="activity_ids">
-                                    <tree editable="bottom">
-                                        <field name="activity_id"/>
-                                        <field name="num_hours"/>
-                                        <field name="description"/>
-                                    </tree>
-                                </field>
-                                <group>
-                                    <field name="total_hours"/>
-                                    <field name="activity_counts"/>
-                                </group>
-                            </page>
-                        </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record model="ir.ui.view" id="daily_activity_tree">
-            <field name="name">daily.activity.form</field>
-            <field name="model">daily.activity.sheet</field>
+        <record model="ir.ui.view" id="single_activity_tree">
+            <field name="name">daily.activity.tree</field>
+            <field name="model">daily.activity</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="medecin"/>
-                    <field name="total_hours"/>
-                    <field name="activity_counts"/>
                 </tree>
             </field>
         </record>
 
-        <record id="daily_activity_sheet_view_gantt" model="ir.ui.view">
-            <field name="name">daily.activity.sheet.gantt</field>
-            <field name="model">daily.activity.sheet</field>
-            <field name="arch" type="xml">
-                <gantt
-                    color="medecin"
-                    date_start="in_date"
-                    date_stop="out_date"
-                    default_group_by='medecin'
-                    thumbnails="{'medecin': 'image_128'}">
-                    <field name="total_hours"/>
-                    <field name="activity_counts"/>
-                    <templates>
-                     <div t-name="gantt-popover" class="container-fluid">
-                         <div class="row no-gutters">
-                             <div class="col">
-                                 <ul class="pl-1 mb-0">
-                                     <li><strong>Nombre total d'heures : </strong> <t t-esc="total_hours"/></li>
-                                     <li><strong>Nombre total d'activités : </strong> <t t-esc="activity_counts"/></li>
-                                 </ul>
-                             </div>
-                         </div>
-                     </div>
-                    </templates>
-                </gantt>
-            </field>
-        </record>
-
-        <record id="daily_activity_sheet_action" model="ir.actions.act_window">
-            <field name="name">Activités journalières</field>
+        <record id="acitivty_types_action" model="ir.actions.act_window">
+            <field name="name">Types d'activités</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">daily.activity.sheet</field>
-            <field name="view_mode">tree,gantt,form</field>
+            <field name="res_model">daily.activity</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.ui.view" id="view_daily_activity_sheet_search">
-        <field name="name">daily.activity.sheet.search</field>
-        <field name="model">daily.activity.sheet</field>
-        <field name="arch" type="xml">
-            <search string="Recherche dans Activités Journalières">
-                <field string="Médecin" name="medecin" />
-                <group expand="0" string="Group By...">
-                    <filter string="Médecin" name="medecin" domain="[]" context="{'group_by':'medecin'}"/>
-                    <filter string="Date" name="month" domain="[]" context="{'group_by':'in_date:year'}"/>
-                </group>
-            </search>
-        </field>
-    </record>
-
-        <menuitem name="Activités Journalières" parent="" id="menu_daily_activity_action"
-                  action="daily_activity_sheet_action" sequence="101"/>
+        <menuitem name="Types d'activités" parent="menu_daily_activity_action" id="menu_activity_types"
+                  action="acitivty_types_action" sequence="102" groups="group_daily_activity_manager"/>
     </data>
 </odoo>

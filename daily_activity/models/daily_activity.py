@@ -49,8 +49,11 @@ class ActivityLine(models.Model):
 
     activity_id = fields.Many2one('daily.activity')
     daily_activity_sheet_id = fields.Many2one('daily.activity.sheet')
+    medecin = fields.Many2one('hr.employee', related='daily_activity_sheet_id.medecin', store=True)
+    date = fields.Datetime(related='daily_activity_sheet_id.in_date', store=True)
     num_hours = fields.Integer('Nombre d\'heures')
     description = fields.Char('Description')
+    document = fields.Binary('Pièce Jointe')
 
 
 

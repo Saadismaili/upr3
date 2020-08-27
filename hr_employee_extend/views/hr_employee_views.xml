@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_form">
+            <field name="name">hr.employee.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <field name="note_resident"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_tree">
+            <field name="name">hr.employee.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="department_id" position="after">
+                    <field name="note_resident"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_kanban">
+            <field name="name">hr.employee.inherit.kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field name="note_resident"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
