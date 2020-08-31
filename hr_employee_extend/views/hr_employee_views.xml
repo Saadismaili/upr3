@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
                 <field name="job_id" position="after">
-                    <field name="note_resident"/>
+                    <field name="moyenne_resident"/>
                 </field>
             </field>
         </record>
@@ -18,7 +18,7 @@
             <field name="inherit_id" ref="hr.view_employee_tree"/>
             <field name="arch" type="xml">
                 <field name="department_id" position="after">
-                    <field name="note_resident"/>
+                    <field name="moyenne_resident"/>
                 </field>
             </field>
         </record>
@@ -29,7 +29,7 @@
             <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='work_phone']" position="after">
-                    <field name="note_resident"/>
+                    <field name="moyenne_resident"/>
                 </xpath>
             </field>
         </record>

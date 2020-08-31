@@ -14,4 +14,13 @@ import math
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    note_resident = fields.Integer('Note du resident')
+    moyenne_resident = fields.Float('Moyenne du resident', compute='_calc_moyenne', default=0.0)
+
+    @api.depends('x_studio_cursus_1')
+    def _calc_moyenne(self):
+        for rec in self:
+            rec.moyenne_resident = 0.0
+            if rec.x_studio_cursus_1:
+                total = sum(line.x_studio_note for line in rec.x_studio_cursus_1 if line.x_studio_note != 0)
+                total_elements = len(rec.x_studio_cursus_1)
+                rec.moyenne_resident = total / total_elements
