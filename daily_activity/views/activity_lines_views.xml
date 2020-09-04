@@ -28,7 +28,6 @@
                 <tree>
                     <field name="activity_id"/>
                     <field name="medecin"/>
-                    <field name="medecin"/>
                     <field name="date"/>
                     <field name="daily_activity_sheet_id"/>
                     <field name="num_hours"/>
@@ -58,7 +57,7 @@
             </field>
         </record>
 
-        <menuitem name="Lignes d'activités" parent="menu_daily_activity_action" id="menu_activity_types"
+        <menuitem name="Lignes d'activités" parent="menu_daily_activity_action" id="menu_activity_lines"
                   action="acitivty_lines_action" sequence="103" groups="group_daily_activity_manager"/>
     </data>
 </odoo>
