@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="single_activity_form">
+            <field name="name">daily.activity.form</field>
+            <field name="model">daily.activity</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="single_activity_tree">
+            <field name="name">daily.activity.tree</field>
+            <field name="model">daily.activity</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="acitivty_types_action" model="ir.actions.act_window">
+            <field name="name">Types d'activités</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">daily.activity</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Types d'activités" parent="menu_daily_activity_action" id="menu_activity_types"
+                  action="acitivty_types_action" sequence="102" groups="group_daily_activity_manager"/>
+    </data>
+</odoo>

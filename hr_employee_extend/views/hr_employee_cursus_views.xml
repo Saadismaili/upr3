@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_employee_cursus_form">
+            <field name="name">hr.cursus.form</field>
+            <field name="model">hr.cursus</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="promotion"/>
+                        <field name="type_de_service"/>
+                        <field name="stage"/>
+                        <field name="note"/>
+                        <field name="duree"/>
+                    </group>
+                    <group>
+                        <field name="service_id"/>
+                        <field name="date_debut"/>
+                        <field name="date_fin"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hr_employee_cursus_tree">
+            <field name="name">hr.cursus.tree</field>
+            <field name="model">hr.cursus</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="promotion"/>
+                    <field name="type_de_service"/>
+                    <field name="stage"/>
+                    <field name="note"/>
+                    <field name="service_id"/>
+                    <field name="date_debut"/>
+                    <field name="date_fin"/>
+                    <field name="duree"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_cursus" model="ir.actions.act_window">
+            <field name="name">Cursus du résident</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.cursus</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Cursus Résident" action="action_hr_cursus"
+                  id="menu_action_hr_cursus"
+                  parent="hr.menu_hr_employee_payroll"/>
+
+    </data>
+</odoo>

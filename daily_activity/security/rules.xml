@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="daily_activity_public_rule" model="ir.rule">
+            <field name="name">CC Activités Journalières: Règle utilisateur</field>
+            <field name="model_id" ref="daily_activity.model_daily_activity_sheet"/>
+            <field name="domain_force">[('medecin.name', '=', user.name)]</field>
+            <field name="groups" eval="[(4, ref('daily_activity.group_daily_activity_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        <record id="daily_activity_rule_all" model="ir.rule">
+            <field name="name">CC Activités Journalières: Voir Tout</field>
+            <field name="model_id" ref="daily_activity.model_daily_activity_sheet"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('daily_activity.group_daily_activity_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+    </data>
+</odoo>

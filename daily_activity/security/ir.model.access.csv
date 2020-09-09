@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_daily_activity_manager,daily.activity access manager,daily_activity.model_daily_activity,daily_activity.group_daily_activity_manager,1,1,1,1
+access_daily_activity_user,daily.activity access user,daily_activity.model_daily_activity,daily_activity.group_daily_activity_user,1,0,0,0
+
+access_daily_activity_sheet,daily.activity.sheet access,daily_activity.model_daily_activity_sheet,base.group_user,1,1,1,1
+access_daily_activity_line,daily.activity.line access,daily_activity.model_daily_activity_line,base.group_user,1,1,1,1

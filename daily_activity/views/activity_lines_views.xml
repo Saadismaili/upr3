@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="activity_line_form">
+            <field name="name">daily.activity.line.form</field>
+            <field name="model">daily.activity.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="activity_id"/>
+                            <field name="daily_activity_sheet_id"/>
+                            <field name="medecin"/>
+                            <field name="date"/>
+                            <field name="num_hours"/>
+                            <field name="description"/>
+                            <field name="document"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="activity_line_tree">
+            <field name="name">daily.activity.line.tree</field>
+            <field name="model">daily.activity.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="activity_id"/>
+                    <field name="medecin"/>
+                    <field name="date"/>
+                    <field name="daily_activity_sheet_id"/>
+                    <field name="num_hours"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="acitivty_lines_action" model="ir.actions.act_window">
+            <field name="name">Types d'activités</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">daily.activity.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_daily_activity_line_search">
+            <field name="name">daily.activity.line.search</field>
+            <field name="model">daily.activity.line</field>
+            <field name="arch" type="xml">
+                <search string="Recherche dans Activités Journalières">
+                    <field string="Médecin" name="medecin"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Médecin" name="medecin" domain="[]" context="{'group_by':'medecin'}"/>
+                        <filter string="Date" name="month" domain="[]" context="{'group_by':'date:year'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <menuitem name="Lignes d'activités" parent="menu_daily_activity_action" id="menu_activity_lines"
+                  action="acitivty_lines_action" sequence="103" groups="group_daily_activity_manager"/>
+    </data>
+</odoo>

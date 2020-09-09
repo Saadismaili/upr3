@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_employee_manager,hr.employee access manager,hr_employee_extend.model_hr_employee,hr_employee_extend.group_hr_employee_manager,1,1,1,1
+access_hr_employee_user,hr.employee access user,hr_employee_extend.model_hr_employee,hr_employee_extend.group_hr_employee_user,1,0,0,0
+access_hr_cursus_user,hr.cursus access user,hr_employee_extend.model_hr_cursus,hr_employee_extend.group_hr_employee_user,1,0,0,0
+access_hr_cursus_manager,hr.cursus access manager,hr_employee_extend.model_hr_cursus,hr_employee_extend.group_hr_employee_manager,1,1,1,1
+access_hr_mode_recrutement,hr.mode.recrutement access manager,hr_employee_extend.model_hr_mode_recrutement,hr_employee_extend.group_hr_employee_manager,1,1,1,1
+access_hr_travaux_public,hr.travaux access public,hr_employee_extend.model_hr_travaux,hr_employee_extend.group_hr_employee_user,1,1,1,1
+access_hr_travaux_revue_public,travaux.revue access public,hr_employee_extend.model_travaux_revue,hr_employee_extend.group_hr_employee_user,1,1,1,1

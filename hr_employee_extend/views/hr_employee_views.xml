@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="act_resident_cursus" model="ir.actions.act_window">
+            <field name="name">Cursus</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.cursus</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('employee_id.id', '=', active_id)]</field>
+        </record>
+
+        <record id="act_resident_titres" model="ir.actions.act_window">
+            <field name="name">Titres et travaux scientifiques</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.travaux</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('auteur.id', '=', active_id)]</field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_form">
+            <field name="name">hr.employee.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <field name="moyenne_resident"/>
+                </field>
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="nom_arabe" string="Nom Arabe"/>
+                    <field name="promotion" string="Promotion"/>
+                    <field name="ordre_de_mrite" string="Ordre de mérite"/>
+                    <field name="duree_stage"/>
+                    <field name="mode_de_recrutement" string="Mode de recrutement"
+                           options="{&quot;no_create&quot;:true}"/>
+                    <field name="issu_de_linternat" string="Issu de l'internat"/>
+                </xpath>
+
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="options">{"no_create":true}</attribute>
+                    <attribute name="string">Affectation</attribute>
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="attributes">
+                    <attribute name="options">{"no_create":true}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='place_of_birth']" position="after">
+                    <field name="region" string="Région"/>
+                </xpath>
+
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button name="%(act_resident_cursus)d" class="oe_stat_button" icon="fa-spinner"
+                            type="action"
+                    >
+                        <field name="cursus_ids_count" string="Cursus"
+                               widget="statinfo"/>
+                    </button>
+
+                    <button name="%(act_resident_titres)d" class="oe_stat_button" icon="fa-briefcase"
+                            type="action"
+                    >
+                        <field name="travaux_ids_count" string="Titres et travaux scientifiques"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_tree">
+            <field name="name">hr.employee.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="department_id" position="after">
+                    <field name="moyenne_resident"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="hr_employee_extend_inherit_kanban">
+            <field name="name">hr.employee.inherit.kanban</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban[1]/templates[1]/t[1]/div[1]/div[1]/div[1]/div[1]/strong[1]/field[@name='name']"
+                       position="after">
+                    <field display="full" name="promotion" bold="True"/>
+                </xpath>
+                <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="widget">email</attribute>
+                </xpath>
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <field display="full" name="mode_de_recrutement"/>
+                    <field display="full" name="department_id" bold="True"/>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <div style="float:right;">
+                        <span>Durée de stage :</span>
+                        <field name="duree_stage"/>
+                        Mois
+                    </div>
+                    <br/>
+                    <div style="float:right;">
+                        <span>Moyenne :</span>
+                        <field name="moyenne_resident"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_hr_mode_recrutement" model="ir.actions.act_window">
+            <field name="name">Modes de Recrutement</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.mode.recrutement</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Modes de Recrutement" action="action_hr_mode_recrutement"
+                  id="menu_action_hr_mode_recrutement"
+                  parent="hr.menu_human_resources_configuration_employee"/>
+    </data>
+</odoo>
