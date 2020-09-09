@@ -21,7 +21,7 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="hr_employee_cursus_tree">
+        <record model="ir.ui.view" id="hr_employee_travaux_tree">
             <field name="name">hr.travaux.tree</field>
             <field name="model">hr.travaux</field>
             <field name="arch" type="xml">

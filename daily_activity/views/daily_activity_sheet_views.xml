@@ -121,7 +121,7 @@
         </record>
 
         <menuitem name="Activités Journalières" parent="" id="menu_daily_activity_action"
-                  action="daily_activity_sheet_action" sequence="101"/>
+                  action="daily_activity_sheet_action" sequence="101" web_icon="daily_activity,static/src/img/icon.png"/>
 
 
     </data>
