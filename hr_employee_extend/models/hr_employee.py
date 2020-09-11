@@ -50,16 +50,27 @@ class HrEmployee(models.Model):
 
 class HrCursus(models.Model):
     _name = 'hr.cursus'
+    _rec_name = 'service_id'
 
     employee_id = fields.Many2one('hr.employee')
     promotion = fields.Char('Promotion')
     type_de_service = fields.Char('Type de Service')
     stage = fields.Char('Stage')
     note = fields.Float('Note')
-    duree = fields.Integer('Durée (Mois)')
+    duree = fields.Integer('Durée (Mois)', compute='_compute_duree')
     service_id = fields.Many2one('hr.department', string="Service")
     date_debut = fields.Date('Date Début')
     date_fin = fields.Date('Date fin')
+    fiche_validation = fields.Binary('Fiche de validation prod')
+
+    @api.depends('date_debut', 'date_fin')
+    def _compute_duree(self):
+        for rec in self:
+            rec.duree = 0
+            if rec.date_debut and rec.date_fin:
+                rec.duree = (rec.date_fin - rec.date_debut).days / 30
+                if rec.duree == 0:
+                    rec.duree = 1
 
 
 class HrModeRecrutement(models.Model):

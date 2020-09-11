@@ -6,19 +6,24 @@
             <field name="model">hr.cursus</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="employee_id"/>
-                        <field name="promotion"/>
-                        <field name="type_de_service"/>
-                        <field name="stage"/>
-                        <field name="note"/>
-                        <field name="duree"/>
-                    </group>
-                    <group>
-                        <field name="service_id"/>
-                        <field name="date_debut"/>
-                        <field name="date_fin"/>
-                    </group>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id" string="Résident"/>
+                                <field name="promotion"/>
+                                <field name="date_debut"/>
+                                <field name="date_fin"/>
+                                <field name="duree"/>
+                            </group>
+                            <group>
+                                <field name="service_id"/>
+                                <field name="type_de_service"/>
+                                <field name="stage"/>
+                                <field name="note"/>
+                                <field name="fiche_validation" widget="image"/>
+                            </group>
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
