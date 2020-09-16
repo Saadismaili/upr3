@@ -50,6 +50,7 @@ class HrEmployee(models.Model):
 
 class HrCursus(models.Model):
     _name = 'hr.cursus'
+    _inherit = 'mail.thread'
     _rec_name = 'service_id'
 
     employee_id = fields.Many2one('hr.employee')
@@ -61,7 +62,6 @@ class HrCursus(models.Model):
     service_id = fields.Many2one('hr.department', string="Service")
     date_debut = fields.Date('Date Début')
     date_fin = fields.Date('Date fin')
-    fiche_validation = fields.Binary('Fiche de validation prod')
 
     @api.depends('date_debut', 'date_fin')
     def _compute_duree(self):
